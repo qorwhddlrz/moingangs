@@ -1,0 +1,103 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% if messages %}
+<ul>
+{% for message in messages %}
+ <li>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<script>
+    window.onload=function(){
+        var subject="{{name}}";
+        var subject_2="{{post_grade}}";
+        var num=1;
+        
+        for(var i=1;i<=3;i++){
+            q=document.getElementById("g"+i);
+            if(q.innerHTML==subject_2){
+                q.classList.add("active");
+                num=i;
+                break;
+            }
+        }
+        for(var i=1;i<=3;i++){
+            if(i!=num){
+                document.getElementById("row_"+i).remove();
+            }
+        }
+        
+        for(var i=1;i<=7;i++){
+            j=document.getElementById("s"+num+i);
+            if(j.innerHTML==subject){
+                j.classList.add("active");
+                break;
+            }   
+        }
+    }
+</script>
+<br>
+<div class="row">
+    <div class="col">
+    <nav class="nav nav-pills flex-column flex-sm-row">
+        <a id="g1" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_grade' '고1' %}">고1</a>
+        <a id="g2" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_grade' '고2' %}">고2</a>
+        <a id="g3" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_grade' '고3' %}">고3</a>
+    </nav>
+    </div>
+</div>
+<div id="row_1" style="margin-top:10px;">
+    <div class="col">
+        <nav class="nav nav-pills flex-column flex-sm-row">           
+            <a id="s11" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고1' '국어' %}">국어</a>
+            <a id="s12" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고1' '수학' %}">수학</a>
+            <a id="s13" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고1' '영어' %}">영어</a>
+            <a id="s14" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고1' '한국사' %}">한국사</a>
+            <a id="s15" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고1' '사회' %}">사회</a>
+            <a id="s16" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고1' '과학' %}">과학</a>
+            <a id="s17" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고1' '제2외국어_한문' %}">제2외국어_한문</a>
+        </nav>
+    </div>
+</div>
+<div id="row_2" style="margin-top:10px;">
+        <div class="col">
+                <nav class="nav nav-pills flex-column flex-sm-row">           
+                        <a id="s21" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고2' '국어' %}">국어</a>
+                        <a id="s22" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고2' '수학' %}">수학</a>
+                        <a id="s23" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고2' '영어' %}">영어</a>
+                        <a id="s24" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고2' '한국사' %}">한국사</a>
+                        <a id="s25" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고2' '사회' %}">사회</a>
+                        <a id="s26" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고2' '과학' %}">과학</a>
+                        <a id="s27" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고2' '제2외국어_한문' %}">제2외국어_한문</a>
+                    </nav>
+        </div>
+</div>
+<div id="row_3" style="margin-top:10px;">
+        <div class="col">
+            <nav class="nav nav-pills flex-column flex-sm-row">           
+                    <a id="s31" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고3' '국어' %}">국어</a>
+                    <a id="s32" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고3' '수학' %}">수학</a>
+                    <a id="s33" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고3' '영어' %}">영어</a>
+                    <a id="s34" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고3' '한국사' %}">한국사</a>
+                    <a id="s35" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고3' '사회' %}">사회</a>
+                    <a id="s36" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고3' '과학' %}">과학</a>
+                    <a id="s37" class="flex-sm-fill text-sm-center nav-link" href="{% url 'post_list_subject' '고3' '제2외국어_한문' %}">제2외국어_한문</a>
+            </nav>
+        </div>
+    </div>
+<div class="row" style="margin-top:10px;">
+    {% for post in posts %}
+    <div class="col m-1">
+        <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1673c9f45c3%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1673c9f45c3%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2299.125%22%20y%3D%2296.3%22%3EImage%20cap%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" style="font-weight:bold;"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</h5></a>
+                <p class="card-text">{{ post.text|linebreaksbr }}<br>{{ post.published_date }}<br><a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
